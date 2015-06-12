@@ -7,15 +7,12 @@
   # matr4 <- matrix(c(2, 3, 1, 5, 1, 0, 3, 1, 0, 2, -3, 2, 0, 2, 3, 1), nrow = 4, ncol = 4)
 
 # My Description - this function takes a matrix of any dimension and creates a list object 
-#   This list contains the following functions, each of which points to the
-#   location of the x environment variable in the parent for example calling this function with the above 4x4 matrix:
-# m1 <- makeCacheMatrix(matr4) - 
+#   which contains 4 functions, each of which points to (or is bound in some way to) the
+#   location of the x environment variable in the parent 
 
-# Then you might see that the func. getinverse() is pointing to the address <environment: 0x10d31b510>
-#    $getinverse
-#  function () 
-#    m
-#  <environment: 0x10d31b510>
+# (for example calling this function with the above 4x4 matrix:
+# m1 <- makeCacheMatrix(matr4) - 
+# Then  all functions contain reference to the some address in the environment (e.g., <environment: 0x10d31b510>)
 
 #   Each function is described individually below:
 
@@ -68,9 +65,10 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Write a short comment describing this function
 
-# This function was tested using the 4x4 matrix descibed above.  Here are the results:
+# This function was tested using the 4x4 matrix descibed above. My description follow the results. 
+#Here are the results:
 
-# the first time - before there was anything in the cache
+# The first time - before there was anything in the cache
 
 #> m3 <- makeCacheMatrix(matr4)
 #>  cacheSolve(m3)
@@ -90,8 +88,6 @@ makeCacheMatrix <- function(x = matrix()) {
 #[2,]  -35  -18  4.000000e+00   24
 #[3,]  -28  -14  3.000000e+00   19
 #$[4,]    1    1  1.054712e-15   -1
-
-
 
 
 
