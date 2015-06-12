@@ -12,7 +12,7 @@
 
 # (for example calling this function with the above 4x4 matrix:
 # m1 <- makeCacheMatrix(matr4) - 
-# Then  all functions contain reference to the some address in the environment (e.g., <environment: 0x10d31b510>)
+# All 4 functions will contain a reference to the some address in the environment (e.g., <environment: 0x10d31b510>)
 
 #   Each function is described individually below:
 
@@ -20,18 +20,18 @@
 #           
 #            Resets m in the parent to NULL - so that cache is cleared 
 
-#   get() : a fucntion which returns the value(s) of x if it exists in the cache (parent)
+#   get() : a function which returns the value(s) of x if it exists in the cache (parent)
 #           Note - if x doesn't exist, then cacheSolve call x$get will fail!
 
 #   setinverse() : a function to store or change the value of the inverse of the matrix m 
-#           Note - solve(m) should be run in the calling fundtion first.
+#           Note - solve(m) should be run in the calling function first.
 
 #   getinverse() : a function which returns the inverse of a matrix m, 
 #                     if it exists in the cache (parent) 
 #                     otherwise returns NULL 
 
 # When makeCacheMatrix(myMatrix) is called, it must be given a valid matrix, else the value of x
-# is pointing at Null and a call to get will fail.
+# is pointing at Null and a call to x$get will fail.
 
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -95,15 +95,20 @@ makeCacheMatrix <- function(x = matrix()) {
 
 # My Description:
 # This function takes the return object stored in the global environment from makeCacheMatrix - 
-#      it checks to see if the function getinverse() is pointing to the inverse of a matrix stored
-#      in the cache (the parent environment). If it finds one, it returns it. 
+#      
+#      It checks to see if the function getinverse() is pointing to the inverse of a matrix stored
+#      in the cache (the parent environment). The steps are:
+
+#        If it finds one, it prints out a message saying it is retrieving the data
+#        It returns the inverse it found in the cache. 
 
 #      Otherwise, if it doesn't find one, (i.e., Null) it looks to the environment for a stored matrix.: 
-#        and get the inverse of it and puts it in the cache and returns it. The steps are:
+#        and gets the inverse of it and puts it in the cache and returns it. The steps are:
 #        
 #        It calls get() to get the stored matrix
 #        It calls solve() to get the inverse of that matrix
 #        It calls setinverse() to store that inverse in the cache for the next time.
+#        It prints out a message saying it is updating the cache
 #        It returns the inverse matrix
 
 cacheSolve <- function(x, ...) {
