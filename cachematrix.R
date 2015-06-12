@@ -28,17 +28,26 @@
 
 
 makeCacheMatrix <- function(x = matrix()) {
+  
+  #local version of m gets set to null
     m <- NULL
+    
+  #set x to value stored in the object in the parent; set the parent m to null.
     set <- function(y) {
       x <<- y
       m <<- NULL
     }
 
+    # return value of x 
     get <- function() x
 
-
+  # store the result from solve in the right place in object
     setinverse <- function(solve) m <<- solve
+    
+  # return whatever result was stored in the object by setinverse  
     getinverse <- function() m
+    
+  # put all this in the list obect and return it
     list(set = set, get = get,
          setinverse = setinverse,
          getinverse = getinverse)
@@ -63,9 +72,12 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-  
+ 
+  # check and see if there is an inverse to m already in the cache.
+   
     m <- x$getinverse()
     if(!is.null(m)) {
+      
       message("getting cached data")
       return(m)
     }
@@ -77,7 +89,12 @@ cacheSolve <- function(x, ...) {
     
     # You must get the inverse of the matrix before you can store it in the cache.
     m <- solve(data, ...)
+    
+    #okay, now you can store it.
+    
     x$setinverse(m)
+    
+    # print out a message letting the user know cache was empty 
     message("There wasn't anything in the cache. Storing inverse into cache for next time")
     m
   }
