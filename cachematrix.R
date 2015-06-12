@@ -13,7 +13,8 @@
 #   get() : a fucntion which returns the value(s) of x if it exists in the cache (parent)
 #           Note - if x doesn't exist, then cacheSolve call x$get will fail!
 
-#   sesetinverse() : 
+#   setinverse() : a function to store or change the value of the inverse of the matrix m 
+#           Note - solve(m) should be run in the calling fundtion first.
 
 #   getinverse() : a function which returns the inverse of a matrix m, 
 #                     if it exists in the cache (parent) 
