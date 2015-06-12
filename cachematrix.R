@@ -1,9 +1,12 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
+## Write a short comment describing this function:
 
-# Description - this function takes a matrix of any dimension and creates a list object 
+# I have tested this with the following 4x4 matrix: 
+  # matr4 <- matrix(c(2, 3, 1, 5, 1, 0, 3, 1, 0, 2, -3, 2, 0, 2, 3, 1), nrow = 4, ncol = 4)
+
+# My Description - this function takes a matrix of any dimension and creates a list object 
 #   This list contains the following functions, each of which points to the location x:
 
 #   set() :  a function (re)sets the value x to the value y and stores x in the parent. 
@@ -75,7 +78,7 @@ cacheSolve <- function(x, ...) {
     # You must get the inverse of the matrix before you can store it in the cache.
     m <- solve(data, ...)
     x$setinverse(m)
-    message("storing inverse into cache")
+    message("There wasn't anything in the cache. Storing inverse into cache for next time")
     m
   }
   
