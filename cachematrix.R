@@ -7,7 +7,17 @@
   # matr4 <- matrix(c(2, 3, 1, 5, 1, 0, 3, 1, 0, 2, -3, 2, 0, 2, 3, 1), nrow = 4, ncol = 4)
 
 # My Description - this function takes a matrix of any dimension and creates a list object 
-#   This list contains the following functions, each of which points to the location x:
+#   This list contains the following functions, each of which points to the
+#   location of the x environment variable in the parent for example calling this function with the above 4x4 matrix:
+# m1 <- makeCacheMatrix(matr4) - 
+
+# Then you might see that the func. getinverse() is pointing to the address <environment: 0x10d31b510>
+#    $getinverse
+#  function () 
+#    m
+#  <environment: 0x10d31b510>
+
+#   Each function is described individually below:
 
 #   set() :  a function (re)sets the value x to the value y and stores x in the parent. 
 #           
@@ -58,6 +68,36 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Write a short comment describing this function
 
+# This function was tested using the 4x4 matrix descibed above.  Here are the results:
+
+# the first time - before there was anything in the cache
+
+#> m3 <- makeCacheMatrix(matr4)
+#>  cacheSolve(m3)
+#There wasn't anything in the cache. Storing inverse into cache for next time
+#     [,1] [,2]          [,3] [,4]
+#[1,]   18    9 -2.000000e+00  -12
+#[2,]  -35  -18  4.000000e+00   24
+#[3,]  -28  -14  3.000000e+00   19
+#[4,]    1    1  1.054712e-15   -1
+
+# the second time, after there was a result stored in the cache
+
+#>  cacheSolve(m3)
+#getting cached data
+#     [,1] [,2]          [,3] [,4]
+#[1,]   18    9 -2.000000e+00  -12
+#[2,]  -35  -18  4.000000e+00   24
+#[3,]  -28  -14  3.000000e+00   19
+#$[4,]    1    1  1.054712e-15   -1
+
+
+
+
+
+
+
+# My Description:
 # This function takes the return object stored in the global environment from makeCacheMatrix - 
 #      it checks to see if the function getinverse() is pointing to the inverse of a matrix stored
 #      in the cache (the parent environment). If it finds one, it returns it. 
